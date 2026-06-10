@@ -7,6 +7,7 @@ const adminLinks = [
   { href: "/admin/classroom-report", label: "Classroom Report" },
   { href: "/admin/game-report", label: "Game Report" },
   { href: "/admin/s1-ready", label: "S1 Ready" },
+  { href: "/admin/s1-assets", label: "S1 Assets" },
   { href: "/sessions", label: "Student View" },
   { href: "/teacher/s01", label: "Teacher S1" }
 ];

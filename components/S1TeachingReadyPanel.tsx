@@ -97,6 +97,9 @@ export function S1TeachingReadyPanel() {
           <Link href="/game/s01" className="hbe-focus rounded-full bg-white px-5 py-3 font-black text-hbe-navy shadow-bubble">
             Game Pack
           </Link>
+          <Link href="/teacher/s1-assets" className="hbe-focus rounded-full bg-white px-5 py-3 font-black text-hbe-navy shadow-bubble">
+            Asset Guide
+          </Link>
         </div>
       </header>
 
