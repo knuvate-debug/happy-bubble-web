@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
+import { TrackOnOpen } from "@/components/TrackOnOpen";
 import { VideoPlayer } from "@/components/VideoPlayer";
 
 export default function S01TheaterPage() {
   return (
-    <PageShell narrow>
+    <><TrackOnOpen sessionId="s01" eventName="theater_open" activityType="theater" />\n    <PageShell narrow>
       <section className="hbe-card rounded-[40px] p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">Bubble Theater</p>
         <h1 className="mt-4 text-5xl font-black text-hbe-navy">S1 · S, A, T</h1>
@@ -21,6 +22,6 @@ export default function S01TheaterPage() {
           </Link>
         </div>
       </section>
-    </PageShell>
+    </PageShell></>
   );
 }

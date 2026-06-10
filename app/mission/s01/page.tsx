@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ActivityButton } from "@/components/ActivityButton";
 import { PageShell } from "@/components/PageShell";
+import { TrackOnOpen } from "@/components/TrackOnOpen";
 
 export default function S01MissionPage() {
   return (
-    <PageShell>
+    <><TrackOnOpen sessionId="s01" eventName="mission_open" activityType="mission" />\n    <PageShell>
       <section className="hbe-card rounded-[40px] p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">Mission</p>
         <h1 className="mt-4 text-5xl font-black text-hbe-navy">S1 Worksheet & Cards</h1>
@@ -21,6 +22,6 @@ export default function S01MissionPage() {
           Back to Session
         </Link>
       </div>
-    </PageShell>
+    </PageShell></>
   );
 }

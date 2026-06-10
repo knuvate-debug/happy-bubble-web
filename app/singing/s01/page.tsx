@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { PageShell } from "@/components/PageShell";
+import { TrackOnOpen } from "@/components/TrackOnOpen";
 
 export default function S01SingingPage() {
   return (
-    <PageShell narrow>
+    <><TrackOnOpen sessionId="s01" eventName="singing_open" activityType="singing" />\n    <PageShell narrow>
       <section className="hbe-card rounded-[40px] p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">Singing Bubble</p>
         <h1 className="mt-4 text-5xl font-black text-hbe-navy">S1 Chant</h1>
@@ -21,6 +22,6 @@ export default function S01SingingPage() {
           </Link>
         </div>
       </section>
-    </PageShell>
+    </PageShell></>
   );
 }

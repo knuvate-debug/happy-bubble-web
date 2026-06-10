@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { trackEvent } from "@/lib/trackEvent";
 import Link from "next/link";
 
 type Round = {
@@ -44,21 +45,58 @@ export function S1SoundMatchGame() {
     setRoundIndex(0);
     setMistakes(0);
     setFeedback("idle");
+    trackEvent({
+      sessionId: "s01",
+      eventName: "game_start",
+      activityType: "game"
+    });
     speak(rounds[0].audioText);
   }
 
   function listen() {
     if (!round) return;
+    trackEvent({
+      sessionId: "s01",
+      eventName: "listen_click",
+      activityType: "game",
+      roundId: round.id,
+      value: round.audioText
+    });
     speak(round.audioText);
   }
 
   function choose(choice: string) {
     if (!round || feedback !== "idle") return;
 
+    trackEvent({
+      sessionId: "s01",
+      eventName: "choice_tap",
+      activityType: "game",
+      roundId: round.id,
+      value: choice,
+      isCorrect: choice === round.correctAnswer
+    });
+
     if (choice === round.correctAnswer) {
+      trackEvent({
+        sessionId: "s01",
+        eventName: "round_correct",
+        activityType: "game",
+        roundId: round.id,
+        value: choice,
+        isCorrect: true
+      });
       setFeedback("correct");
       window.setTimeout(() => {
         if (roundIndex === rounds.length - 1) {
+          trackEvent({
+            sessionId: "s01",
+            eventName: "game_complete",
+            activityType: "game",
+            metadata: {
+              mistakes
+            }
+          });
           setComplete(true);
           setFeedback("idle");
         } else {
@@ -68,6 +106,14 @@ export function S1SoundMatchGame() {
         }
       }, 720);
     } else {
+      trackEvent({
+        sessionId: "s01",
+        eventName: "round_wrong",
+        activityType: "game",
+        roundId: round.id,
+        value: choice,
+        isCorrect: false
+      });
       setMistakes((value) => value + 1);
       setFeedback("wrong");
       window.setTimeout(() => setFeedback("idle"), 650);

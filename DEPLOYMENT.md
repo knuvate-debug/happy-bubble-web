@@ -117,3 +117,11 @@ S1 P4: https://[domain]/mission/s01
 □ 실제 asset 파일 업로드
 □ 모바일에서 /game/s01 터치 가능
 ```
+
+
+## 8. Supabase 연결
+
+Supabase 기록 기능을 사용하려면 `SUPABASE_SETUP.md`를 확인하세요.
+
+1차 배포는 Supabase 없이도 가능합니다.  
+2차 배포에서 환경변수를 넣으면 기록 기능이 활성화됩니다.

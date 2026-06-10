@@ -45,3 +45,22 @@ npm run build
 ## 실제 콘텐츠 파일
 
 `ASSET_MANIFEST.md`를 확인하세요.
+
+
+## Supabase
+
+`SUPABASE_SETUP.md`를 확인하세요.
+
+기록되는 이벤트 예:
+
+```txt
+game_start
+listen_click
+choice_tap
+round_correct
+round_wrong
+game_complete
+theater_open
+singing_open
+mission_open
+```
