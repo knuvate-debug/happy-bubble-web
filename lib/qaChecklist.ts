@@ -173,6 +173,33 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/api/classroom-summary"
     },
     {
+      id: "api-game-report",
+      group: "Routes",
+      title: "/api/game-report?sessionId=s01",
+      description: "Game Report API가 응답해야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/api/game-report?sessionId=s01"
+    },
+    {
+      id: "route-teacher-game-report-s01",
+      group: "Routes",
+      title: "/teacher/game-report/s01",
+      description: "교사용 S1 Game Report가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/teacher/game-report/s01"
+    },
+    {
+      id: "route-admin-game-report",
+      group: "Routes",
+      title: "/admin/game-report",
+      description: "Admin Game Report가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/admin/game-report"
+    },
+    {
       id: "api-classroom-report",
       group: "Routes",
       title: "/api/classroom-report?sessionId=s01",

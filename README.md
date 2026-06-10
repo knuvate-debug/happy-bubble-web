@@ -410,3 +410,25 @@ S1 Game Pack:
 2. Bubble Pop
 3. Build SAT
 ```
+
+
+## Game Report Package
+
+이 버전은 S1 Game Pack 결과를 Teacher / Parent / Admin 리포트로 연결했습니다.
+
+```txt
+/api/game-report?sessionId=s01
+/teacher/game-report/s01
+/admin/game-report
+/parent
+```
+
+요약:
+
+```txt
+Game Pack 진행률
+게임별 완료 수
+게임별 정답/오답
+게임별 정확도
+최근 게임 이벤트
+```
