@@ -12,6 +12,9 @@ export type QaCheckItem = {
   severity: QaSeverity;
   expected: string;
   route?: string;
+  expectedText?: string;
+  forbiddenText?: string;
+  method?: "HEAD" | "GET";
 };
 
 export function buildStaticQaChecklist(): QaCheckItem[] {
@@ -77,7 +80,9 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       description: "S2는 public에서 Coming Soon으로 보호되어야 합니다.",
       severity: "critical",
       expected: "200 OK with Coming Soon",
-      route: "/game/s02"
+      route: "/game/s02",
+      expectedText: "Coming Soon",
+      method: "GET"
     },
     {
       id: "route-s02-preview",
@@ -86,7 +91,9 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       description: "S2 BUILD_WORD preview가 열려야 합니다.",
       severity: "warning",
       expected: "200 OK",
-      route: "/game/s02?preview=true"
+      route: "/game/s02?preview=true",
+      forbiddenText: "Coming Soon",
+      method: "GET"
     },
     {
       id: "route-s03-preview",
@@ -95,7 +102,9 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       description: "S3 SOUND_MATCH preview가 열려야 합니다.",
       severity: "warning",
       expected: "200 OK",
-      route: "/game/s03?preview=true"
+      route: "/game/s03?preview=true",
+      forbiddenText: "Coming Soon",
+      method: "GET"
     },
     {
       id: "route-report-s15",
@@ -130,7 +139,9 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
         description: `${target.label} production QR 대상 URL입니다.`,
         severity: session.status === "open" ? "critical" : "info",
         expected: session.status === "open" ? "200 OK" : "Coming Soon protected",
-        route: target.productionPath
+        route: target.productionPath,
+        expectedText: session.status === "open" ? undefined : "Coming Soon",
+        method: session.status === "open" ? "HEAD" : "GET"
       });
     }
   }

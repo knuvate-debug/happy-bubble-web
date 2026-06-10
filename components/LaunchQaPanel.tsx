@@ -13,6 +13,9 @@ type QaCheckItem = {
   severity: QaSeverity;
   expected: string;
   route?: string;
+  expectedText?: string;
+  forbiddenText?: string;
+  method?: "HEAD" | "GET";
 };
 
 type QaSummary = {
@@ -36,30 +39,35 @@ function severityClass(severity: QaSeverity) {
   return "bg-hbe-sky text-hbe-navy";
 }
 
-async function checkRoute(route?: string): Promise<QaStatus> {
-  if (!route) return "warning";
+async function checkRoute(check: QaCheckItem): Promise<QaStatus> {
+  if (!check.route) return "warning";
+
+  const shouldReadText = check.method === "GET" || check.expectedText || check.forbiddenText;
 
   try {
-    const response = await fetch(route, {
-      method: "HEAD",
+    const response = await fetch(check.route, {
+      method: shouldReadText ? "GET" : "HEAD",
       cache: "no-store"
     });
 
-    if (response.ok) return "pass";
     if (response.status === 404) return "fail";
-    return "warning";
-  } catch {
-    try {
-      const response = await fetch(route, {
-        method: "GET",
-        cache: "no-store"
-      });
-      if (response.ok) return "pass";
-      if (response.status === 404) return "fail";
-      return "warning";
-    } catch {
-      return "fail";
+    if (!response.ok) return "warning";
+
+    if (shouldReadText) {
+      const text = await response.text();
+
+      if (check.expectedText && !text.includes(check.expectedText)) {
+        return "fail";
+      }
+
+      if (check.forbiddenText && text.includes(check.forbiddenText)) {
+        return "fail";
+      }
     }
+
+    return "pass";
+  } catch {
+    return "fail";
   }
 }
 
@@ -89,7 +97,7 @@ export function LaunchQaPanel() {
 
     for (const check of summary.checks) {
       setStatuses((value) => ({ ...value, [check.id]: "checking" }));
-      const status = await checkRoute(check.route);
+      const status = await checkRoute(check);
       setStatuses((value) => ({ ...value, [check.id]: status }));
     }
 

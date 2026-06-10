@@ -193,3 +193,21 @@ Assets
 QR
 Supabase configured
 ```
+
+
+## Build Fix Package
+
+이 버전은 Launch QA 패키지의 빌드 전 안정화 수정본입니다.
+
+```txt
+BUILD_FIX_NOTES.md
+SOURCE_AUDIT_RESULT.md
+```
+
+핵심 수정:
+
+```txt
+TSX literal newline 정리
+/admin/qa Coming Soon 보호 검사 강화
+preview route 검사 강화
+```
