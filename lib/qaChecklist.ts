@@ -173,6 +173,33 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/api/classroom-summary"
     },
     {
+      id: "api-s1-teaching-ready",
+      group: "Routes",
+      title: "/api/s1-teaching-ready",
+      description: "S1 Teaching Ready API가 응답해야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/api/s1-teaching-ready"
+    },
+    {
+      id: "route-teacher-s1-ready",
+      group: "Routes",
+      title: "/teacher/s1-ready",
+      description: "교사용 S1 Teaching Ready 화면이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/teacher/s1-ready"
+    },
+    {
+      id: "route-admin-s1-ready",
+      group: "Routes",
+      title: "/admin/s1-ready",
+      description: "관리자용 S1 Teaching Ready 화면이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/admin/s1-ready"
+    },
+    {
       id: "api-game-report",
       group: "Routes",
       title: "/api/game-report?sessionId=s01",
