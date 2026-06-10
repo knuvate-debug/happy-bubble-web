@@ -11,10 +11,24 @@ export default function TeacherS01Page() {
     <ModeShell mode="teacher">
       <section className="rounded-[44px] bg-white/78 p-8 shadow-bubble">
         <PageTitle
-          eyebrow="Teacher Mode"
+          eyebrow="Teacher Bubble Board"
           title={`Session 1 · ${flow.title}`}
           description={`Total time: ${flow.totalTime}. 수업 중 바로 누를 수 있도록 단계별 실행 버튼과 백업 플랜을 정리했습니다.`}
         />
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/classroom/s01"
+            className="hbe-focus inline-flex rounded-full bg-hbe-green px-6 py-4 font-black text-white shadow-bubble transition hover:-translate-y-1"
+          >
+            Open Classroom Mode
+          </Link>
+          <Link
+            href="/sessions/s01"
+            className="hbe-focus inline-flex rounded-full bg-white px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
+          >
+            Today’s Bubble
+          </Link>
+        </div>
       </section>
 
       <section className="mt-8 grid gap-5 lg:grid-cols-2">

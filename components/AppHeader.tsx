@@ -13,6 +13,9 @@ export function AppHeader() {
         <Link className="hbe-focus rounded-full bg-white/75 px-4 py-2 shadow-sm transition hover:bg-hbe-cream" href="/teacher/s01">
           Teacher
         </Link>
+        <Link className="hbe-focus rounded-full bg-white/75 px-4 py-2 shadow-sm transition hover:bg-hbe-cream" href="/classroom/s01">
+          Classroom
+        </Link>
         <Link className="hbe-focus rounded-full bg-white/75 px-4 py-2 shadow-sm transition hover:bg-hbe-cream" href="/admin">
           Admin
         </Link>
