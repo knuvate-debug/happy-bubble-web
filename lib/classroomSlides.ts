@@ -126,7 +126,7 @@ export const classroomDecks: Record<string, ClassroomDeck> = {
         visualType: "sound_focus",
         focusText: "s",
         actions: [
-          { label: "Go to Game", href: "/game/s01", tone: "soft" }
+          { label: "Open Game Pack", href: "/game/s01", tone: "soft" }
         ]
       },
       {
@@ -144,7 +144,7 @@ export const classroomDecks: Record<string, ClassroomDeck> = {
         visualType: "sound_focus",
         focusText: "a",
         actions: [
-          { label: "Go to Game", href: "/game/s01", tone: "soft" }
+          { label: "Open Game Pack", href: "/game/s01", tone: "soft" }
         ]
       },
       {
@@ -162,7 +162,7 @@ export const classroomDecks: Record<string, ClassroomDeck> = {
         visualType: "sound_focus",
         focusText: "t",
         actions: [
-          { label: "Go to Game", href: "/game/s01", tone: "soft" }
+          { label: "Open Game Pack", href: "/game/s01", tone: "soft" }
         ]
       },
       {
@@ -198,7 +198,7 @@ export const classroomDecks: Record<string, ClassroomDeck> = {
         visualType: "game",
         focusText: "Listen & Pop",
         actions: [
-          { label: "Start Game", href: "/game/s01", tone: "primary" }
+          { label: "Open Game Pack", href: "/game/s01", tone: "primary" }
         ]
       },
       {

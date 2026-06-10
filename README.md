@@ -390,3 +390,23 @@ substitute
 /classroom/s01/presenter?mode=substitute
 /teacher/report/s01
 ```
+
+
+## Bubble Game Pack Package
+
+이 버전은 S1 Bubble Game을 Game Pack 구조로 확장했습니다.
+
+```txt
+/game/s01
+/game/s01/sound-match
+/game/s01/bubble-pop
+/game/s01/build-sat
+```
+
+S1 Game Pack:
+
+```txt
+1. Sound Match
+2. Bubble Pop
+3. Build SAT
+```

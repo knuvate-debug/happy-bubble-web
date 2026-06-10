@@ -38,6 +38,42 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/sessions/s01"
     },
     {
+      id: "route-game-s01-pack",
+      group: "Routes",
+      title: "/game/s01",
+      description: "S1 Game Pack landing이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/game/s01"
+    },
+    {
+      id: "route-game-s01-sound-match",
+      group: "Routes",
+      title: "/game/s01/sound-match",
+      description: "S1 Sound Match 게임이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/game/s01/sound-match"
+    },
+    {
+      id: "route-game-s01-bubble-pop",
+      group: "Routes",
+      title: "/game/s01/bubble-pop",
+      description: "S1 Bubble Pop 게임이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/game/s01/bubble-pop"
+    },
+    {
+      id: "route-game-s01-build-sat",
+      group: "Routes",
+      title: "/game/s01/build-sat",
+      description: "S1 Build SAT 게임이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/game/s01/build-sat"
+    },
+    {
       id: "route-game-s01",
       group: "Routes",
       title: "/game/s01",
