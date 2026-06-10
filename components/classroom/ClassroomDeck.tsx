@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { ClassroomDeck as ClassroomDeckType } from "@/lib/classroomSlides";
+import { trackClassroomEvent } from "@/lib/classroomTracking";
 import { ClassroomControls } from "./ClassroomControls";
 import { ClassroomSlide } from "./ClassroomSlide";
 
@@ -12,11 +13,51 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
   const currentSlide = deck.slides[currentIndex];
 
   function goPrev() {
-    setCurrentIndex((value) => Math.max(0, value - 1));
+    setCurrentIndex((value) => {
+      const next = Math.max(0, value - 1);
+      if (next !== value) {
+        const nextSlide = deck.slides[next];
+        trackClassroomEvent({
+          sessionId: deck.sessionId,
+          eventName: "classroom_prev",
+          slideId: nextSlide.id,
+          value: nextSlide.title,
+          metadata: { source: "student_deck", index: next }
+        });
+      }
+      return next;
+    });
   }
 
   function goNext() {
-    setCurrentIndex((value) => Math.min(deck.slides.length - 1, value + 1));
+    setCurrentIndex((value) => {
+      const next = Math.min(deck.slides.length - 1, value + 1);
+      if (next !== value) {
+        const nextSlide = deck.slides[next];
+        trackClassroomEvent({
+          sessionId: deck.sessionId,
+          eventName: "classroom_next",
+          slideId: nextSlide.id,
+          value: nextSlide.title,
+          metadata: { source: "student_deck", index: next }
+        });
+      }
+      return next;
+    });
+  }
+
+  function completeClassroom() {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_complete",
+      slideId: currentSlide.id,
+      value: currentSlide.title,
+      metadata: {
+        source: "student_deck",
+        slideCount: deck.slides.length,
+        currentIndex
+      }
+    });
   }
 
   function goFullscreen() {
@@ -27,6 +68,26 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
     }
     deckRef.current.requestFullscreen().catch(() => {});
   }
+
+  useEffect(() => {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_open",
+      slideId: currentSlide.id,
+      value: deck.title,
+      metadata: { source: "student_deck", slideCount: deck.slides.length }
+    });
+  }, [deck.sessionId, deck.slides.length, deck.title]);
+
+  useEffect(() => {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_slide_view",
+      slideId: currentSlide.id,
+      value: currentSlide.title,
+      metadata: { source: "student_deck", index: currentIndex }
+    });
+  }, [currentIndex, currentSlide.id, currentSlide.title, deck.sessionId]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -86,6 +147,7 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
         onPrev={goPrev}
         onNext={goNext}
         onFullscreen={goFullscreen}
+        onComplete={completeClassroom}
       />
     </div>
   );

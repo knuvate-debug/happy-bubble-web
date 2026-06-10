@@ -1,7 +1,20 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import type { ClassroomDeck } from "@/lib/classroomSlides";
+import { trackClassroomEvent } from "@/lib/classroomTracking";
 
 export function ClassroomOverview({ deck }: { deck: ClassroomDeck }) {
+  useEffect(() => {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_overview_open",
+      value: deck.title,
+      metadata: { source: "overview", slideCount: deck.slides.length }
+    });
+  }, [deck.sessionId, deck.slides.length, deck.title]);
+
   return (
     <main className="hbe-page min-h-screen p-4 sm:p-6">
       <header className="mb-6 rounded-[40px] bg-white/78 p-7 shadow-bubble">

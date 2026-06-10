@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AdminShell } from "@/components/ui/AdminShell";
 import { StatusBadge } from "@/components/StatusBadge";
 import { AdminDashboard } from "@/components/AdminDashboard";
+import { ClassroomRecordsPanel } from "@/components/ClassroomRecordsPanel";
 import { QrAdminPanel } from "@/components/QrAdminPanel";
 import { AssetAdminPanel } from "@/components/AssetAdminPanel";
 import { sessions } from "@/lib/sessions";
@@ -90,6 +91,8 @@ export default function AdminPage() {
       <AssetAdminPanel />
 
       <QrAdminPanel />
+
+      <ClassroomRecordsPanel />
 
       <AdminDashboard />
     </AdminShell>

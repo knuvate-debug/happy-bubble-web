@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { ClassroomDeck as ClassroomDeckType } from "@/lib/classroomSlides";
+import { trackClassroomEvent } from "@/lib/classroomTracking";
 import { ClassroomTimer } from "./ClassroomTimer";
 import { PresenterSlideList } from "./PresenterSlideList";
 import { SlideActionButton } from "./SlideActionButton";
@@ -12,12 +13,84 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
   const slide = deck.slides[currentIndex];
 
   function goPrev() {
-    setCurrentIndex((value) => Math.max(0, value - 1));
+    setCurrentIndex((value) => {
+      const next = Math.max(0, value - 1);
+      if (next !== value) {
+        const nextSlide = deck.slides[next];
+        trackClassroomEvent({
+          sessionId: deck.sessionId,
+          eventName: "classroom_prev",
+          slideId: nextSlide.id,
+          value: nextSlide.title,
+          metadata: { source: "presenter", index: next }
+        });
+      }
+      return next;
+    });
   }
 
   function goNext() {
-    setCurrentIndex((value) => Math.min(deck.slides.length - 1, value + 1));
+    setCurrentIndex((value) => {
+      const next = Math.min(deck.slides.length - 1, value + 1);
+      if (next !== value) {
+        const nextSlide = deck.slides[next];
+        trackClassroomEvent({
+          sessionId: deck.sessionId,
+          eventName: "classroom_next",
+          slideId: nextSlide.id,
+          value: nextSlide.title,
+          metadata: { source: "presenter", index: next }
+        });
+      }
+      return next;
+    });
   }
+
+  function selectSlide(index: number) {
+    setCurrentIndex(index);
+    const selected = deck.slides[index];
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_slide_view",
+      slideId: selected.id,
+      value: selected.title,
+      metadata: { source: "presenter_select", index }
+    });
+  }
+
+  function completeClassroom() {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_complete",
+      slideId: slide.id,
+      value: slide.title,
+      metadata: {
+        source: "presenter",
+        slideCount: deck.slides.length,
+        currentIndex
+      }
+    });
+  }
+
+  useEffect(() => {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_presenter_open",
+      slideId: slide.id,
+      value: deck.title,
+      metadata: { source: "presenter", slideCount: deck.slides.length }
+    });
+  }, [deck.sessionId, deck.slides.length, deck.title]);
+
+  useEffect(() => {
+    trackClassroomEvent({
+      sessionId: deck.sessionId,
+      eventName: "classroom_slide_view",
+      slideId: slide.id,
+      value: slide.title,
+      metadata: { source: "presenter", index: currentIndex }
+    });
+  }, [currentIndex, deck.sessionId, slide.id, slide.title]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -67,7 +140,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
       </header>
 
       <section className="grid gap-5 xl:grid-cols-[320px_1fr_340px]">
-        <PresenterSlideList deck={deck} currentIndex={currentIndex} onSelect={setCurrentIndex} />
+        <PresenterSlideList deck={deck} currentIndex={currentIndex} onSelect={selectSlide} />
 
         <section className="rounded-[44px] bg-white/80 p-7 shadow-bubble">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">
@@ -109,13 +182,19 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
             </div>
           ) : null}
 
-          <div className="mt-8 flex justify-between gap-3">
+          <div className="mt-8 flex flex-wrap justify-between gap-3">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
               className="hbe-focus rounded-full bg-white px-6 py-4 font-black text-hbe-navy shadow-bubble disabled:opacity-40"
             >
               Back
+            </button>
+            <button
+              onClick={completeClassroom}
+              className="hbe-focus rounded-full bg-hbe-gold px-6 py-4 font-black text-hbe-navy shadow-bubble"
+            >
+              Complete
             </button>
             <button
               onClick={goNext}
@@ -128,7 +207,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
         </section>
 
         <aside className="space-y-5">
-          <ClassroomTimer />
+          <ClassroomTimer sessionId={deck.sessionId} source="presenter" />
 
           <section className="rounded-[32px] bg-white/80 p-5 shadow-bubble">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-hbe-green">

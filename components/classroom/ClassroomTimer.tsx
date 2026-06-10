@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { trackClassroomEvent } from "@/lib/classroomTracking";
 
 function formatSeconds(seconds: number) {
   const minutes = Math.floor(seconds / 60);
@@ -8,7 +9,13 @@ function formatSeconds(seconds: number) {
   return `${String(minutes).padStart(2, "0")}:${String(rest).padStart(2, "0")}`;
 }
 
-export function ClassroomTimer() {
+export function ClassroomTimer({
+  sessionId,
+  source = "presenter"
+}: {
+  sessionId: string;
+  source?: string;
+}) {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
 
@@ -30,13 +37,29 @@ export function ClassroomTimer() {
       <p className="mt-3 text-5xl font-black">{formatted}</p>
       <div className="mt-5 flex gap-2">
         <button
-          onClick={() => setRunning(true)}
+          onClick={() => {
+            setRunning(true);
+            trackClassroomEvent({
+              sessionId,
+              eventName: "classroom_timer_start",
+              value: formatted,
+              metadata: { source, seconds }
+            });
+          }}
           className="hbe-focus rounded-full bg-hbe-green px-4 py-2 text-sm font-black text-white"
         >
           Start
         </button>
         <button
-          onClick={() => setRunning(false)}
+          onClick={() => {
+            setRunning(false);
+            trackClassroomEvent({
+              sessionId,
+              eventName: "classroom_timer_pause",
+              value: formatted,
+              metadata: { source, seconds }
+            });
+          }}
           className="hbe-focus rounded-full bg-white/15 px-4 py-2 text-sm font-black text-white"
         >
           Pause
@@ -44,6 +67,12 @@ export function ClassroomTimer() {
         <button
           onClick={() => {
             setRunning(false);
+            trackClassroomEvent({
+              sessionId,
+              eventName: "classroom_timer_reset",
+              value: formatted,
+              metadata: { source, seconds }
+            });
             setSeconds(0);
           }}
           className="hbe-focus rounded-full bg-white/15 px-4 py-2 text-sm font-black text-white"

@@ -3,13 +3,15 @@ export function ClassroomControls({
   total,
   onPrev,
   onNext,
-  onFullscreen
+  onFullscreen,
+  onComplete
 }: {
   currentIndex: number;
   total: number;
   onPrev: () => void;
   onNext: () => void;
   onFullscreen: () => void;
+  onComplete: () => void;
 }) {
   return (
     <div className="mt-5 flex flex-col gap-3 rounded-[32px] bg-white/72 p-4 shadow-bubble sm:flex-row sm:items-center sm:justify-between">
@@ -34,6 +36,12 @@ export function ClassroomControls({
         <div className="rounded-full bg-hbe-sky px-4 py-2 text-sm font-black text-hbe-navy">
           {currentIndex + 1} / {total}
         </div>
+        <button
+          onClick={onComplete}
+          className="hbe-focus rounded-full bg-hbe-gold px-5 py-3 font-black text-hbe-navy shadow-sm"
+        >
+          Complete
+        </button>
         <button
           onClick={onFullscreen}
           className="hbe-focus rounded-full bg-hbe-navy px-5 py-3 font-black text-white shadow-sm"
