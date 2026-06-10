@@ -56,6 +56,42 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/classroom/s01"
     },
     {
+      id: "route-classroom-presenter-native",
+      group: "Routes",
+      title: "/classroom/s01/presenter?mode=native",
+      description: "Native Teacher Mode Presenter가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/presenter?mode=native"
+    },
+    {
+      id: "route-classroom-presenter-korean",
+      group: "Routes",
+      title: "/classroom/s01/presenter?mode=korean",
+      description: "Korean Teacher Mode Presenter가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/presenter?mode=korean"
+    },
+    {
+      id: "route-classroom-presenter-bilingual",
+      group: "Routes",
+      title: "/classroom/s01/presenter?mode=bilingual",
+      description: "Bilingual Support Mode Presenter가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/presenter?mode=bilingual"
+    },
+    {
+      id: "route-classroom-presenter-substitute",
+      group: "Routes",
+      title: "/classroom/s01/presenter?mode=substitute",
+      description: "Substitute Teacher Mode Presenter가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/presenter?mode=substitute"
+    },
+    {
       id: "route-classroom-s01-presenter",
       group: "Routes",
       title: "/classroom/s01/presenter",

@@ -367,3 +367,26 @@ Complete 기록
 Timer 기록
 최근 Classroom 이벤트
 ```
+
+
+## Instructor Mode Package
+
+이 버전은 Classroom/Presenter에 Instructor Mode Layer를 추가했습니다.
+
+```txt
+native
+korean
+bilingual
+substitute
+```
+
+확인 URL:
+
+```txt
+/teacher/s01
+/classroom/s01/presenter?mode=native
+/classroom/s01/presenter?mode=korean
+/classroom/s01/presenter?mode=bilingual
+/classroom/s01/presenter?mode=substitute
+/teacher/report/s01
+```
