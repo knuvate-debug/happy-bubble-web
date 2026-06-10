@@ -173,6 +173,33 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/api/classroom-summary"
     },
     {
+      id: "api-s1-assets",
+      group: "Routes",
+      title: "/api/s1-assets",
+      description: "S1 Asset Manifest API가 응답해야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/api/s1-assets"
+    },
+    {
+      id: "route-teacher-s1-assets",
+      group: "Routes",
+      title: "/teacher/s1-assets",
+      description: "교사용 S1 Asset Guide 화면이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/teacher/s1-assets"
+    },
+    {
+      id: "route-admin-s1-assets",
+      group: "Routes",
+      title: "/admin/s1-assets",
+      description: "관리자용 S1 Asset Guide 화면이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/admin/s1-assets"
+    },
+    {
       id: "api-s1-teaching-ready",
       group: "Routes",
       title: "/api/s1-teaching-ready",
