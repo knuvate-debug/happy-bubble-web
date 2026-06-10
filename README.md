@@ -211,3 +211,25 @@ TSX literal newline 정리
 /admin/qa Coming Soon 보호 검사 강화
 preview route 검사 강화
 ```
+
+
+## UI Design System Package
+
+이 버전은 Child / Teacher / Admin 모드별 UI 구조를 개선한 패키지입니다.
+
+```txt
+components/ui/*
+UI_DESIGN_SYSTEM_NOTES.md
+UI_TEST_CHECKLIST.md
+```
+
+개선된 페이지:
+
+```txt
+/sessions
+/sessions/s01
+/teacher/s01
+/teacher/[sessionId]
+/admin
+/admin/qa
+```
