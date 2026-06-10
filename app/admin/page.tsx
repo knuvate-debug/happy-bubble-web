@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { StatusBadge } from "@/components/StatusBadge";
 import { AdminDashboard } from "@/components/AdminDashboard";
@@ -24,6 +25,12 @@ export default function AdminPage() {
         <p className="mt-4 text-lg font-bold text-hbe-navy/70">
           세션과 콘텐츠 상태를 확인합니다. 이 MVP는 read-only입니다.
         </p>
+        <Link
+          href="/admin/qa"
+          className="hbe-focus mt-6 inline-flex rounded-full bg-hbe-green px-6 py-3 font-black text-white shadow-bubble"
+        >
+          Open Launch QA
+        </Link>
       </section>
 
       <section className="mt-8 overflow-x-auto rounded-[32px] bg-white/80 p-4 shadow-bubble">

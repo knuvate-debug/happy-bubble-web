@@ -173,3 +173,23 @@ S1 필수 파일 검수:
 ```txt
 /admin → Asset Check → Check S1 Assets
 ```
+
+
+## Launch QA Page
+
+이 버전은 `/admin/qa`에서 런칭 전 QA 점검을 실행할 수 있습니다.
+
+```txt
+/admin/qa
+```
+
+점검 항목:
+
+```txt
+Routes
+Access Policy
+Preview
+Assets
+QR
+Supabase configured
+```
