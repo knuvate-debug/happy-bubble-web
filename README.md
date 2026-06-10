@@ -156,3 +156,20 @@ P3 /singing/sXX
 P4 /mission/sXX
 S15 P4 /report/s15
 ```
+
+
+## Asset Admin Panel
+
+이 버전은 `/admin`에서 실제 콘텐츠 파일 접근 여부를 확인할 수 있습니다.
+
+```txt
+components/AssetAdminPanel.tsx
+app/api/asset-manifest/route.ts
+lib/assetManifest.ts
+```
+
+S1 필수 파일 검수:
+
+```txt
+/admin → Asset Check → Check S1 Assets
+```

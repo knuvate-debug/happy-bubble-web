@@ -2,6 +2,7 @@ import { PageShell } from "@/components/PageShell";
 import { StatusBadge } from "@/components/StatusBadge";
 import { AdminDashboard } from "@/components/AdminDashboard";
 import { QrAdminPanel } from "@/components/QrAdminPanel";
+import { AssetAdminPanel } from "@/components/AssetAdminPanel";
 import { sessions } from "@/lib/sessions";
 import { getSessionContents } from "@/lib/sessionContents";
 import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
@@ -78,6 +79,8 @@ export default function AdminPage() {
           </tbody>
         </table>
       </section>
+
+      <AssetAdminPanel />
 
       <QrAdminPanel />
 
