@@ -4,6 +4,7 @@ import { ModeShell } from "./ModeShell";
 const adminLinks = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/qa", label: "Launch QA" },
+  { href: "/admin/classroom-report", label: "Classroom Report" },
   { href: "/sessions", label: "Student View" },
   { href: "/teacher/s01", label: "Teacher S1" }
 ];
