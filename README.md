@@ -345,3 +345,25 @@ classroom_timer_reset
 /admin
 /api/classroom-summary
 ```
+
+
+## Classroom Report Package
+
+이 버전은 Classroom Tracking 데이터를 요약하는 수업 리포트 화면을 추가했습니다.
+
+```txt
+/teacher/report/s01
+/admin/classroom-report
+/api/classroom-report?sessionId=s01
+```
+
+리포트 항목:
+
+```txt
+진행률
+슬라이드 조회 수
+Next / Back 이동 수
+Complete 기록
+Timer 기록
+최근 Classroom 이벤트
+```

@@ -101,6 +101,33 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/api/classroom-summary"
     },
     {
+      id: "api-classroom-report",
+      group: "Routes",
+      title: "/api/classroom-report?sessionId=s01",
+      description: "Classroom Report API가 응답해야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/api/classroom-report?sessionId=s01"
+    },
+    {
+      id: "route-teacher-report-s01",
+      group: "Routes",
+      title: "/teacher/report/s01",
+      description: "교사용 S1 Classroom Report가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/teacher/report/s01"
+    },
+    {
+      id: "route-admin-classroom-report",
+      group: "Routes",
+      title: "/admin/classroom-report",
+      description: "Admin Classroom Report가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/admin/classroom-report"
+    },
+    {
       id: "route-admin",
       group: "Routes",
       title: "/admin",
