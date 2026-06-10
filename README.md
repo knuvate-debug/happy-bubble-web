@@ -233,3 +233,22 @@ UI_TEST_CHECKLIST.md
 /admin
 /admin/qa
 ```
+
+
+## Game & Parent Polish Package
+
+이 버전은 Phaser game frame과 Parent Mode를 개선했습니다.
+
+```txt
+GAME_PARENT_POLISH_NOTES.md
+GAME_PARENT_POLISH_CHECKLIST.md
+```
+
+확인 URL:
+
+```txt
+/game/s01
+/game/s02?preview=true
+/game/s03?preview=true
+/parent
+```
