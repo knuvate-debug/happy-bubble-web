@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ActivityButton } from "@/components/ActivityButton";
-import { PageShell } from "@/components/PageShell";
+import { ModeShell } from "@/components/ui/ModeShell";
+import { PageTitle } from "@/components/ui/PageTitle";
+import { ParentReviewCard } from "@/components/ui/ParentReviewCard";
+import { ProgressPill } from "@/components/ui/ProgressPill";
+import { Button } from "@/components/ui/Button";
 import { getAnonymousId } from "@/lib/anonymousId";
 
 type Progress = {
@@ -38,57 +41,96 @@ export default function ParentPage() {
   const s1Progress = progress.find((item) => item.session_id === "s01");
 
   return (
-    <PageShell>
-      <section className="hbe-card rounded-[40px] p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">Parent Mode</p>
-        <h1 className="mt-4 text-5xl font-black text-hbe-navy">Happy Bubble Review</h1>
-        <p className="mt-4 max-w-2xl text-xl font-bold text-hbe-navy/70">
-          오늘의 비눗방울을 집에서 다시 만나보세요.
-        </p>
-      </section>
+    <ModeShell mode="parent">
+      <section className="rounded-[48px] bg-white/80 p-8 shadow-bubble">
+        <PageTitle
+          eyebrow="Parent Mode"
+          title="Happy Bubble Home Review"
+          description="집에서는 길게 하지 않아도 됩니다. 오늘 만난 버블을 3분만 다시 열어보세요."
+        />
 
-      <section className="mt-8 hbe-card rounded-[32px] p-6">
-        <p className="text-sm font-black text-hbe-green">Session 1</p>
-        <h2 className="mt-2 text-3xl font-black text-hbe-navy">S, A, T</h2>
-        <p className="mt-3 font-bold text-hbe-navy/70">
-          노래를 한 번 듣고, 게임을 한 번 다시 해보세요. 집에서는 3분이면 충분합니다.
-        </p>
-
-        <div className="mt-5 rounded-[24px] bg-hbe-sky/70 p-4">
-          {configured === null ? (
-            <p className="font-bold text-hbe-navy/70">기록을 확인하고 있어요.</p>
-          ) : configured === false ? (
-            <p className="font-bold text-hbe-navy/70">
-              Supabase가 아직 연결되지 않았어요. 그래도 복습 링크는 사용할 수 있습니다.
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px] lg:items-stretch">
+          <div className="rounded-[36px] bg-hbe-sky/75 p-6">
+            <p className="text-sm font-black uppercase tracking-wide text-hbe-green">Today&apos;s Bubble</p>
+            <h2 className="mt-3 text-5xl font-black text-hbe-navy">S, A, T</h2>
+            <p className="mt-4 text-lg font-bold text-hbe-navy/70">
+              오늘은 소리를 듣고 같은 버블을 고르는 활동을 했어요. 집에서는 정답보다 “다시 듣기” 경험이 더 중요합니다.
             </p>
-          ) : s1Progress ? (
-            <div className="grid gap-2 text-sm font-black text-hbe-navy sm:grid-cols-2">
-              <p>Game: {s1Progress.game_completed ? "Done" : "Try again"}</p>
-              <p>Theater: {s1Progress.theater_viewed ? "Viewed" : "Ready"}</p>
-              <p>Singing: {s1Progress.singing_played ? "Played" : "Ready"}</p>
-              <p>Mission: {s1Progress.mission_opened ? "Opened" : "Ready"}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <ProgressPill label="Theater" active={Boolean(s1Progress?.theater_viewed)} />
+              <ProgressPill label="Game" active={Boolean(s1Progress?.game_completed)} />
+              <ProgressPill label="Singing" active={Boolean(s1Progress?.singing_played)} />
+              <ProgressPill label="Mission" active={Boolean(s1Progress?.mission_opened)} />
             </div>
-          ) : (
-            <p className="font-bold text-hbe-navy/70">
-              아직 이 기기에서 활동 기록이 없어요. S1을 먼저 해보면 이곳에 표시됩니다.
-            </p>
-          )}
+          </div>
+
+          <div className="rounded-[36px] bg-hbe-cream p-6">
+            <p className="text-sm font-black uppercase tracking-wide text-hbe-navy/55">Review Guide</p>
+            <h3 className="mt-3 text-2xl font-black text-hbe-navy">오늘은 이렇게 해주세요</h3>
+            <ol className="mt-4 space-y-3 text-sm font-bold text-hbe-navy/72">
+              <li>1. Game을 한 번 다시 열어주세요.</li>
+              <li>2. Listen을 아이가 직접 눌러보게 해주세요.</li>
+              <li>3. 틀려도 바로 정답을 말하지 말고 다시 듣게 해주세요.</li>
+              <li>4. 마지막에 Singing을 짧게 들어주세요.</li>
+            </ol>
+          </div>
         </div>
+
+        {configured === false ? (
+          <div className="mt-6 rounded-[28px] bg-hbe-lilac/75 p-5">
+            <h3 className="text-xl font-black text-hbe-navy">기록 연결 전입니다</h3>
+            <p className="mt-2 font-bold text-hbe-navy/70">
+              Supabase가 아직 연결되지 않아 활동 기록은 표시되지 않을 수 있습니다. 복습 링크는 정상적으로 사용할 수 있습니다.
+            </p>
+          </div>
+        ) : null}
       </section>
 
       <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <ActivityButton href="/theater/s01" label="Watch Theater" subLabel="영상 다시 보기" />
-        <ActivityButton href="/game/s01" label="Play Game" subLabel="게임 다시 하기" />
-        <ActivityButton href="/singing/s01" label="Sing Again" subLabel="노래 듣기" />
-        <ActivityButton href="/mission/s01" label="Open Mission" subLabel="자료 보기" />
+        <ParentReviewCard
+          title="Watch"
+          description="짧은 이야기로 S, A, T 소리를 다시 만나요."
+          href="/theater/s01"
+          action="Theater"
+          tone="info"
+        />
+        <ParentReviewCard
+          title="Play"
+          description="소리를 듣고 맞는 버블을 터치해요."
+          href="/game/s01"
+          action="Game"
+          tone="open"
+        />
+        <ParentReviewCard
+          title="Sing"
+          description="노래로 소리를 부담 없이 반복해요."
+          href="/singing/s01"
+          action="Singing"
+          tone="soon"
+        />
+        <ParentReviewCard
+          title="Mission"
+          description="Worksheet와 Flash Cards를 확인해요."
+          href="/mission/s01"
+          action="Mission"
+          tone="ready"
+        />
       </section>
 
-      <section className="mt-8 hbe-card rounded-[32px] p-6">
-        <h2 className="text-2xl font-black text-hbe-navy">Smart Report</h2>
-        <p className="mt-3 font-bold text-hbe-navy/70">
-          15개의 비눗방울 여정이 쌓이면 Smart Report가 열려요. 점수가 아니라, 아이가 다시 들어보면 좋은 소리와 활동 흐름을 알려드립니다.
-        </p>
+      <section className="mt-8 rounded-[40px] bg-white/78 p-7 shadow-bubble">
+        <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
+          <div>
+            <p className="text-sm font-black uppercase tracking-wide text-hbe-green">Smart Report</p>
+            <h2 className="mt-2 text-3xl font-black text-hbe-navy">아직은 준비 단계입니다</h2>
+            <p className="mt-2 max-w-2xl font-bold text-hbe-navy/68">
+              15개의 비눗방울 여정이 쌓이면, 점수가 아니라 아이가 다시 들어보면 좋은 소리와 활동 흐름을 알려드립니다.
+            </p>
+          </div>
+          <Button href="/report/s15" variant="soft">
+            View Report
+          </Button>
+        </div>
       </section>
-    </PageShell>
+    </ModeShell>
   );
 }

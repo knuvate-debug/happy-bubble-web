@@ -91,7 +91,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
             fontStyle: "bold"
           }).setOrigin(0.5);
 
-          this.add.text(width / 2, height * 0.51, "소리를 듣고 버블을 톡!", {
+          this.add.text(width / 2, height * 0.51, gameSession.subtitle, {
             fontFamily: "Arial",
             fontSize: "20px",
             color: "#1B4F8A",
@@ -287,7 +287,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
             fontStyle: "bold"
           }).setOrigin(0.5);
 
-          this.add.text(width / 2, height * 0.44, "You did it!", {
+          this.add.text(width / 2, height * 0.44, "Bubble Complete!", {
             fontFamily: "Arial",
             fontSize: "54px",
             color: "#1B4F8A",
@@ -413,7 +413,16 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
   }, [gameSession]);
 
   return (
-    <section className="hbe-card rounded-[40px] p-4 sm:p-6">
+    <section className="hbe-card rounded-[44px] p-4 sm:p-6">
+      <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+        <div>
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-hbe-green">Bubble Game</p>
+          <h1 className="text-3xl font-black text-hbe-navy">{gameSession.title}</h1>
+        </div>
+        <div className="rounded-full bg-hbe-cream px-4 py-2 text-sm font-black text-hbe-navy">
+          {gameSession.template}
+        </div>
+      </div>
       {!isReady ? (
         <div className="flex min-h-[420px] items-center justify-center text-xl font-black text-hbe-navy">
           Bubble Game을 준비하고 있어요.
@@ -425,7 +434,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
         aria-label="S1 Phaser Sound Match Game"
       />
       <p className="mt-4 text-center text-sm font-bold text-hbe-navy/60">
-        모바일에서는 화면을 세로로 잡고 버블을 터치해 주세요.
+        Listen을 누르고, 들리는 소리와 같은 버블을 터치해 주세요.
       </p>
     </section>
   );

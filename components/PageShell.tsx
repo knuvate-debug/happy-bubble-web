@@ -1,3 +1,4 @@
+import { AppHeader } from "./AppHeader";
 import { ModeShell } from "./ui/ModeShell";
 
 export function PageShell({
@@ -10,7 +11,8 @@ export function PageShell({
   if (narrow) {
     return (
       <main className="hbe-page min-h-screen">
-        <section className="mx-auto max-w-3xl px-5 py-8">
+        <AppHeader />
+        <section className="mx-auto max-w-3xl px-5 pb-16">
           {children}
         </section>
       </main>
