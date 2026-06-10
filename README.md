@@ -432,3 +432,24 @@ Game Pack 진행률
 게임별 정확도
 최근 게임 이벤트
 ```
+
+
+## MVP 23 Stabilization Package
+
+이 버전은 MVP 22까지의 기능을 통합 안정화하고 점검 스크립트를 추가했습니다.
+
+```txt
+npm run audit:hbe:source
+npm run audit:hbe:routes
+npm run audit:hbe:assets
+npm run audit:hbe
+```
+
+중요 문서:
+
+```txt
+MVP23_STABILIZATION_NOTES.md
+MVP23_ROUTE_MATRIX.md
+MVP23_PRE_DEPLOY_CHECKLIST.md
+MVP23_KNOWN_LIMITS.md
+```

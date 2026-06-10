@@ -3,7 +3,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "audit:hbe:routes": "node scripts/hbe-route-audit.mjs",
+    "audit:hbe:source": "node scripts/hbe-source-audit.mjs",
+    "audit:hbe:assets": "node scripts/hbe-asset-audit.mjs",
+    "audit:hbe": "npm run audit:hbe:source && npm run audit:hbe:routes && npm run audit:hbe:assets"
   },
   "dependencies": {
     "next": "14.2.15",
