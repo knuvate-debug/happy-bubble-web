@@ -136,3 +136,23 @@ components/AdminDashboard.tsx
 learning_events
 session_progress
 ```
+
+
+## QR Admin Panel
+
+이 버전은 `/admin`에서 QR Preview / Production URL을 확인할 수 있습니다.
+
+```txt
+lib/qrRoutes.ts
+components/QrAdminPanel.tsx
+```
+
+QR 규칙:
+
+```txt
+P1 /theater/sXX
+P2 /game/sXX
+P3 /singing/sXX
+P4 /mission/sXX
+S15 P4 /report/s15
+```
