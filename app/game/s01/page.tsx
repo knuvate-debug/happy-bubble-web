@@ -1,23 +1,18 @@
-import { GameRouter } from "@/components/GameRouter";
-import { PageShell } from "@/components/PageShell";
-import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
+import { GamePackLanding } from "@/components/game/GamePackLanding";
+import { getGamePack } from "@/game/data/gamePacks";
 
-export default function S01GamePage() {
-  const gameSession = getBubbleGameSession("s01");
+export default function S01GamePackPage() {
+  const pack = getGamePack("s01");
 
-  if (!gameSession) {
+  if (!pack) {
     return (
-      <PageShell narrow>
+      <main className="hbe-page min-h-screen p-8">
         <section className="hbe-card rounded-[40px] p-8 text-center">
-          <h1 className="text-4xl font-black text-hbe-navy">Game data not found</h1>
+          <h1 className="text-4xl font-black text-hbe-navy">Game Pack not found</h1>
         </section>
-      </PageShell>
+      </main>
     );
   }
 
-  return (
-    <PageShell narrow>
-      <GameRouter gameSession={gameSession} />
-    </PageShell>
-  );
+  return <GamePackLanding pack={pack} />;
 }
