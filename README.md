@@ -87,3 +87,16 @@ game/data/bubbleGameSessions.ts
 ```
 
 현재 `/game/s01`은 Phaser SOUND_MATCH로 작동하고, S2~S15는 coming soon 정책으로 보호됩니다.
+
+
+## S2 BUILD_WORD Phaser
+
+이 버전은 S2 BUILD_WORD 템플릿을 Phaser로 구현했습니다.
+
+```txt
+/game/s02
+→ public에서는 Coming Soon
+
+/game/s02?preview=true
+→ 내부 preview에서 BUILD_WORD 실행
+```

@@ -6,16 +6,20 @@ import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
 import { getSession } from "@/lib/sessions";
 
 export default function GamePage({
-  params
+  params,
+  searchParams
 }: {
   params: { sessionId: string };
+  searchParams?: { preview?: string };
 }) {
   const session = getSession(params.sessionId);
   if (!session) notFound();
 
   const gameSession = getBubbleGameSession(params.sessionId);
 
-  if (session.status !== "open") {
+  const isPreview = searchParams?.preview === "true";
+
+  if (session.status !== "open" && !isPreview) {
     return (
       <PageShell narrow>
         <ComingSoonCard title={`Bubble Game · ${session.title}`} />

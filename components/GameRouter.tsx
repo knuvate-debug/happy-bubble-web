@@ -1,4 +1,4 @@
-import { BuildWordPlaceholder } from "./BuildWordPlaceholder";
+import { PhaserBuildWordGame } from "./PhaserBuildWordGame";
 import { PhaserSoundMatchGame } from "./PhaserSoundMatchGame";
 import { UnsupportedGameTemplate } from "./UnsupportedGameTemplate";
 import type { BubbleGameSession } from "@/game/data/bubbleGameSessions";
@@ -9,7 +9,7 @@ export function GameRouter({ gameSession }: { gameSession: BubbleGameSession }) 
   }
 
   if (gameSession.template === "BUILD_WORD") {
-    return <BuildWordPlaceholder gameSession={gameSession} />;
+    return <PhaserBuildWordGame gameSession={gameSession} />;
   }
 
   return <UnsupportedGameTemplate gameSession={gameSession} />;
