@@ -119,3 +119,20 @@ Teacher preview:
 ```txt
 /teacher/s03?preview=true
 ```
+
+
+## Admin Supabase Dashboard
+
+이 버전은 `/admin`에서 Supabase 기록을 확인할 수 있습니다.
+
+```txt
+/api/admin-summary
+components/AdminDashboard.tsx
+```
+
+확인 가능한 기록:
+
+```txt
+learning_events
+session_progress
+```
