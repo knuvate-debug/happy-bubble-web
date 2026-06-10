@@ -64,3 +64,13 @@ theater_open
 singing_open
 mission_open
 ```
+
+
+## Phaser S1 Game
+
+이 버전은 `/game/s01`이 Phaser 기반 SOUND_MATCH 게임으로 구현되어 있습니다.
+
+```txt
+game/data/bubbleGameSessions.ts
+components/PhaserSoundMatchGame.tsx
+```

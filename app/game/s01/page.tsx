@@ -1,10 +1,23 @@
 import { PageShell } from "@/components/PageShell";
-import { S1SoundMatchGame } from "@/components/S1SoundMatchGame";
+import { PhaserSoundMatchGame } from "@/components/PhaserSoundMatchGame";
+import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
 
 export default function S01GamePage() {
+  const gameSession = getBubbleGameSession("s01");
+
+  if (!gameSession) {
+    return (
+      <PageShell narrow>
+        <section className="hbe-card rounded-[40px] p-8 text-center">
+          <h1 className="text-4xl font-black text-hbe-navy">Game data not found</h1>
+        </section>
+      </PageShell>
+    );
+  }
+
   return (
     <PageShell narrow>
-      <S1SoundMatchGame />
+      <PhaserSoundMatchGame gameSession={gameSession} />
     </PageShell>
   );
 }
