@@ -23,6 +23,12 @@ export default function TeacherS01Page() {
             Open Classroom Mode
           </Link>
           <Link
+            href="/classroom/s01/presenter"
+            className="hbe-focus inline-flex rounded-full bg-hbe-cream px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
+          >
+            Presenter View
+          </Link>
+          <Link
             href="/sessions/s01"
             className="hbe-focus inline-flex rounded-full bg-white px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
           >

@@ -51,6 +51,19 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
+            href="/classroom/s01/presenter"
+            className="hbe-focus rounded-full bg-hbe-green px-4 py-2 text-sm font-black text-white shadow-sm"
+            target="_blank"
+          >
+            Presenter
+          </Link>
+          <Link
+            href="/classroom/s01/overview"
+            className="hbe-focus rounded-full bg-hbe-cream px-4 py-2 text-sm font-black text-hbe-navy shadow-sm"
+          >
+            Overview
+          </Link>
+          <Link
             href="/teacher/s01"
             className="hbe-focus rounded-full bg-white px-4 py-2 text-sm font-black text-hbe-navy shadow-sm"
           >
