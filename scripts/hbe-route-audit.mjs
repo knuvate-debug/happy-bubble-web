@@ -40,6 +40,9 @@ const checks = [
   "app/api/learning-events/route.ts",
   "app/api/classroom-report/route.ts",
   "app/api/game-report/route.ts",
+  "app/teacher/s1-ready/page.tsx",
+  "app/admin/s1-ready/page.tsx",
+  "app/api/s1-teaching-ready/route.ts",
   "app/api/classroom-summary/route.ts"
 ];
 

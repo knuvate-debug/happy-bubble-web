@@ -453,3 +453,24 @@ MVP23_ROUTE_MATRIX.md
 MVP23_PRE_DEPLOY_CHECKLIST.md
 MVP23_KNOWN_LIMITS.md
 ```
+
+
+## MVP 24 · S1 Teaching Ready Package
+
+이 버전은 Session 1을 실제 수업 가능 상태로 마감하기 위한 Teaching Ready 화면과 체크리스트를 추가했습니다.
+
+```txt
+/teacher/s1-ready
+/admin/s1-ready
+/api/s1-teaching-ready
+```
+
+문서:
+
+```txt
+S1_TEACHING_READY_CHECKLIST.md
+S1_CLASSROOM_RUNBOOK.md
+S1_ASSET_FINAL_REQUIREMENTS.md
+S1_PILOT_OPERATION_GUIDE.md
+S1_TEACHING_READY_NOTES.md
+```
