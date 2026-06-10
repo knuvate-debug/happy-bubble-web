@@ -492,3 +492,5 @@ S1_TEACHING_READY_NOTES.md
 npm run check:s1:filenames
 npm run audit:hbe
 ```
+
+S1 asset manifest hotfix applied.
