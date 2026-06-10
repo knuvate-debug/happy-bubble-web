@@ -56,6 +56,24 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/classroom/s01"
     },
     {
+      id: "route-classroom-s01-presenter",
+      group: "Routes",
+      title: "/classroom/s01/presenter",
+      description: "S1 Presenter View가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/presenter"
+    },
+    {
+      id: "route-classroom-s01-overview",
+      group: "Routes",
+      title: "/classroom/s01/overview",
+      description: "S1 Slide Overview가 열려야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/classroom/s01/overview"
+    },
+    {
       id: "route-teacher-s01",
       group: "Routes",
       title: "/teacher/s01",

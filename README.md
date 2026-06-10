@@ -298,3 +298,23 @@ app/classroom/s01/page.tsx
 /teacher/s01 → Open Classroom Mode
 /classroom/s01
 ```
+
+
+## Classroom Presenter Package
+
+이 버전은 Classroom Mode에 Presenter View, Slide Overview, Class Timer를 추가했습니다.
+
+```txt
+/classroom/s01/presenter
+/classroom/s01/overview
+```
+
+교사용 수업 운영:
+
+```txt
+/classroom/s01
+→ 학생/프로젝터용
+
+/classroom/s01/presenter
+→ 교사용 진행 화면
+```
