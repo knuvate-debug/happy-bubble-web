@@ -1,5 +1,5 @@
+import { GameRouter } from "@/components/GameRouter";
 import { PageShell } from "@/components/PageShell";
-import { PhaserSoundMatchGame } from "@/components/PhaserSoundMatchGame";
 import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
 
 export default function S01GamePage() {
@@ -17,7 +17,7 @@ export default function S01GamePage() {
 
   return (
     <PageShell narrow>
-      <PhaserSoundMatchGame gameSession={gameSession} />
+      <GameRouter gameSession={gameSession} />
     </PageShell>
   );
 }

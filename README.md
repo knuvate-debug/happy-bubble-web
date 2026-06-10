@@ -74,3 +74,16 @@ mission_open
 game/data/bubbleGameSessions.ts
 components/PhaserSoundMatchGame.tsx
 ```
+
+
+## GameRouter
+
+이 버전은 공통 GameRouter를 사용합니다.
+
+```txt
+app/game/[sessionId]/page.tsx
+components/GameRouter.tsx
+game/data/bubbleGameSessions.ts
+```
+
+현재 `/game/s01`은 Phaser SOUND_MATCH로 작동하고, S2~S15는 coming soon 정책으로 보호됩니다.

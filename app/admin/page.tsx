@@ -2,6 +2,7 @@ import { PageShell } from "@/components/PageShell";
 import { StatusBadge } from "@/components/StatusBadge";
 import { sessions } from "@/lib/sessions";
 import { getSessionContents } from "@/lib/sessionContents";
+import { getBubbleGameSession } from "@/game/data/bubbleGameSessions";
 
 function qrUrl(sessionId: string, part: "P1" | "P2" | "P3" | "P4") {
   if (part === "P1") return `/theater/${sessionId}`;
@@ -29,6 +30,7 @@ export default function AdminPage() {
               <th className="px-3">Session</th>
               <th className="px-3">Title</th>
               <th className="px-3">Status</th>
+              <th className="px-3">Game</th>
               <th className="px-3">Contents</th>
               <th className="px-3">QR</th>
             </tr>
@@ -36,6 +38,7 @@ export default function AdminPage() {
           <tbody>
             {sessions.map((session) => {
               const contents = getSessionContents(session.id);
+              const game = getBubbleGameSession(session.id);
               return (
                 <tr key={session.id} className="rounded-[24px] bg-hbe-bg">
                   <td className="px-3 py-4 font-black">S{String(session.number).padStart(2, "0")}</td>
@@ -44,6 +47,9 @@ export default function AdminPage() {
                     <p className="text-sm font-bold text-hbe-navy/60">{session.theme}</p>
                   </td>
                   <td className="px-3 py-4"><StatusBadge status={session.status} /></td>
+                  <td className="px-3 py-4 text-sm font-black text-hbe-navy/75">
+                    {game ? game.template : "—"}
+                  </td>
                   <td className="px-3 py-4">
                     <div className="flex flex-wrap gap-2">
                       {contents.length ? contents.map((content) => (

@@ -70,7 +70,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
           this.clearSceneObjects();
           const { width, height } = this.scale;
 
-          this.add.text(width / 2, height * 0.18, "Session 1", {
+          this.add.text(width / 2, height * 0.18, `Session ${gameSession.number}`, {
             fontFamily: "Arial",
             fontSize: "18px",
             color: "#5DA636",
@@ -294,7 +294,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
             fontStyle: "bold"
           }).setOrigin(0.5);
 
-          this.add.text(width / 2, height * 0.53, "Great job! S, A, T 버블을 모두 만났어요.", {
+          this.add.text(width / 2, height * 0.53, "Great job! 버블을 모두 만났어요.", {
             fontFamily: "Arial",
             fontSize: "20px",
             color: "#1B4F8A",
@@ -318,7 +318,7 @@ export function PhaserSoundMatchGame({ gameSession }: { gameSession: BubbleGameS
           });
 
           this.createPillButton(width / 2 + 130, height * 0.75, "Session", 180, 64, 0xffffff, "#1B4F8A", () => {
-            window.location.href = "/sessions/s01";
+            window.location.href = `/sessions/${gameSession.sessionId}`;
           });
         }
 

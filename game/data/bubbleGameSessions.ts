@@ -6,6 +6,12 @@ export type SoundMatchRound = {
   choices: string[];
 };
 
+export type BuildWordTarget = {
+  id: string;
+  word: string;
+  letters: string[];
+};
+
 export type BubbleGameSession = {
   id: string;
   sessionId: string;
@@ -16,6 +22,7 @@ export type BubbleGameSession = {
   template: "SOUND_MATCH" | "BUILD_WORD" | "REVEAL_FLAP" | "SLIDE_CAR" | "SPEED_QUIZ";
   status: "open" | "coming_soon" | "preview";
   rounds: SoundMatchRound[];
+  buildTargets?: BuildWordTarget[];
 };
 
 export const bubbleGameSessions: BubbleGameSession[] = [
@@ -75,7 +82,13 @@ export const bubbleGameSessions: BubbleGameSession[] = [
     theme: "Alphabet Explorer",
     template: "BUILD_WORD",
     status: "coming_soon",
-    rounds: []
+    rounds: [],
+    buildTargets: [
+      { id: "s02-b1", word: "pin", letters: ["p", "i", "n"] },
+      { id: "s02-b2", word: "pat", letters: ["p", "a", "t"] },
+      { id: "s02-b3", word: "tap", letters: ["t", "a", "p"] },
+      { id: "s02-b4", word: "sat", letters: ["s", "a", "t"] }
+    ]
   },
   {
     id: "HBE_BG_S03",
