@@ -33,6 +33,7 @@ export default function AdminPage() {
               <th className="px-3">Game</th>
               <th className="px-3">Contents</th>
               <th className="px-3">QR</th>
+              <th className="px-3">Preview</th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +65,10 @@ export default function AdminPage() {
                     P2 {qrUrl(session.id, "P2")}<br />
                     P3 {qrUrl(session.id, "P3")}<br />
                     P4 {qrUrl(session.id, "P4")}
+                  </td>
+                  <td className="px-3 py-4 text-sm font-bold">
+                    /game/{session.id}?preview=true<br />
+                    /teacher/{session.id}?preview=true
                   </td>
                 </tr>
               );

@@ -100,3 +100,22 @@ game/data/bubbleGameSessions.ts
 /game/s02?preview=true
 → 내부 preview에서 BUILD_WORD 실행
 ```
+
+
+## S3 SOUND_MATCH Preview
+
+이 버전은 S3 데이터를 Phaser SOUND_MATCH 엔진에 연결했습니다.
+
+```txt
+/game/s03
+→ public Coming Soon
+
+/game/s03?preview=true
+→ 내부 preview에서 SOUND_MATCH 실행
+```
+
+Teacher preview:
+
+```txt
+/teacher/s03?preview=true
+```
