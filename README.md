@@ -494,3 +494,5 @@ npm run audit:hbe
 ```
 
 S1 asset manifest hotfix applied.
+
+Sound Match prop hotfix applied.
