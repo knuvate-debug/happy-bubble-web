@@ -474,3 +474,21 @@ S1_ASSET_FINAL_REQUIREMENTS.md
 S1_PILOT_OPERATION_GUIDE.md
 S1_TEACHING_READY_NOTES.md
 ```
+
+
+## MVP 25 · S1 Asset Ready Package
+
+이 버전은 S1 실제 파일을 넣기 직전의 asset drop guide를 추가했습니다.
+
+```txt
+/teacher/s1-assets
+/admin/s1-assets
+/api/s1-assets
+```
+
+추가 확인 명령:
+
+```txt
+npm run check:s1:filenames
+npm run audit:hbe
+```

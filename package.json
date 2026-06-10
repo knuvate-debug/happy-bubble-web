@@ -7,7 +7,8 @@
     "audit:hbe:routes": "node scripts/hbe-route-audit.mjs",
     "audit:hbe:source": "node scripts/hbe-source-audit.mjs",
     "audit:hbe:assets": "node scripts/hbe-asset-audit.mjs",
-    "audit:hbe": "npm run audit:hbe:source && npm run audit:hbe:routes && npm run audit:hbe:assets"
+    "audit:hbe": "npm run audit:hbe:source && npm run audit:hbe:routes && npm run audit:hbe:assets && npm run check:s1:filenames",
+    "check:s1:filenames": "node scripts/hbe-s1-filename-check.mjs"
   },
   "dependencies": {
     "next": "14.2.15",
