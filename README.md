@@ -274,3 +274,27 @@ components/student/BubbleStatusLegend.tsx
 ```
 
 외부 이미지 파일 없이 CSS bubble shapes로 구현했습니다.
+
+
+## Classroom Mode / Web PPT Mode
+
+이 버전은 `/classroom/s01` 웹 슬라이드 수업 모드를 추가했습니다.
+
+```txt
+/classroom/s01
+```
+
+추가 파일:
+
+```txt
+lib/classroomSlides.ts
+components/classroom/*
+app/classroom/s01/page.tsx
+```
+
+확인:
+
+```txt
+/teacher/s01 → Open Classroom Mode
+/classroom/s01
+```

@@ -47,6 +47,15 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/game/s01"
     },
     {
+      id: "route-classroom-s01",
+      group: "Routes",
+      title: "/classroom/s01",
+      description: "S1 Classroom Mode / Web PPT deck이 열려야 합니다.",
+      severity: "critical",
+      expected: "200 OK",
+      route: "/classroom/s01"
+    },
+    {
       id: "route-teacher-s01",
       group: "Routes",
       title: "/teacher/s01",
