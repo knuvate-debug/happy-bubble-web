@@ -92,6 +92,15 @@ export function buildStaticQaChecklist(): QaCheckItem[] {
       route: "/parent"
     },
     {
+      id: "api-classroom-summary",
+      group: "Routes",
+      title: "/api/classroom-summary",
+      description: "Classroom 이벤트 조회 API가 응답해야 합니다.",
+      severity: "warning",
+      expected: "200 OK",
+      route: "/api/classroom-summary"
+    },
+    {
       id: "route-admin",
       group: "Routes",
       title: "/admin",

@@ -318,3 +318,30 @@ app/classroom/s01/page.tsx
 /classroom/s01/presenter
 → 교사용 진행 화면
 ```
+
+
+## Classroom Tracking Package
+
+이 버전은 Classroom Mode에 Supabase 이벤트 기록을 추가했습니다.
+
+```txt
+classroom_open
+classroom_presenter_open
+classroom_overview_open
+classroom_slide_view
+classroom_next
+classroom_prev
+classroom_complete
+classroom_timer_start
+classroom_timer_pause
+classroom_timer_reset
+```
+
+확인:
+
+```txt
+/classroom/s01
+/classroom/s01/presenter
+/admin
+/api/classroom-summary
+```

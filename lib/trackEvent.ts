@@ -10,12 +10,22 @@ export type LearningEventName =
   | "round_correct"
   | "round_wrong"
   | "game_complete"
-  | "restart";
+  | "restart"
+  | "classroom_open"
+  | "classroom_presenter_open"
+  | "classroom_overview_open"
+  | "classroom_slide_view"
+  | "classroom_next"
+  | "classroom_prev"
+  | "classroom_complete"
+  | "classroom_timer_start"
+  | "classroom_timer_pause"
+  | "classroom_timer_reset";
 
 export type TrackEventPayload = {
   sessionId: string;
   eventName: LearningEventName;
-  activityType?: "theater" | "game" | "singing" | "mission" | "teacher" | "parent";
+  activityType?: "theater" | "game" | "singing" | "mission" | "teacher" | "parent" | "classroom";
   roundId?: string;
   value?: string;
   isCorrect?: boolean;
