@@ -36,6 +36,12 @@ export default function TeacherS01Page() {
             Classroom Report
           </Link>
           <Link
+            href="/teacher/game-report/s01"
+            className="hbe-focus inline-flex rounded-full bg-white px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
+          >
+            Game Report
+          </Link>
+          <Link
             href="/sessions/s01"
             className="hbe-focus inline-flex rounded-full bg-white px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
           >

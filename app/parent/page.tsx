@@ -131,6 +131,9 @@ export default function ParentPage() {
           </Button>
         </div>
       </section>
+      <section className="mt-8">
+        <GameReportPanel sessionId="s01" audience="parent" />
+      </section>
     </ModeShell>
   );
 }
