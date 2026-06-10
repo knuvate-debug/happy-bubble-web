@@ -252,3 +252,25 @@ GAME_PARENT_POLISH_CHECKLIST.md
 /game/s03?preview=true
 /parent
 ```
+
+
+## Bubble Journey UI Package
+
+이 버전은 Student Mode를 HBE 고유의 Bubble Journey Map 구조로 변경했습니다.
+
+```txt
+components/student/BubbleJourneyMap.tsx
+components/student/BubbleNode.tsx
+components/student/TodayBubbleHero.tsx
+components/student/ActivityBubbleGrid.tsx
+components/student/BubbleStatusLegend.tsx
+```
+
+확인 URL:
+
+```txt
+/sessions
+/sessions/s01
+```
+
+외부 이미지 파일 없이 CSS bubble shapes로 구현했습니다.
