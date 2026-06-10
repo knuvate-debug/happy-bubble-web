@@ -2,6 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ComingSoonCard } from "@/components/ComingSoonCard";
 import { PageShell } from "@/components/PageShell";
+import { ModeShell } from "@/components/ui/ModeShell";
+import { PageTitle } from "@/components/ui/PageTitle";
+import { TeacherStepCard } from "@/components/ui/TeacherStepCard";
 import { teacherFlows } from "@/lib/teacherFlows";
 import { getSession } from "@/lib/sessions";
 
@@ -37,41 +40,18 @@ export default function TeacherSessionPage({
   }
 
   return (
-    <PageShell>
-      <section className="hbe-card rounded-[40px] p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">
-          Teacher Mode {isPreview ? "· Preview" : ""}
-        </p>
-        <h1 className="mt-4 text-5xl font-black text-hbe-navy">
-          Session {session.number} · {flow.title}
-        </h1>
-        <p className="mt-4 text-xl font-bold text-hbe-navy/70">Total time: {flow.totalTime}</p>
+    <ModeShell mode="teacher">
+      <section className="rounded-[44px] bg-white/78 p-8 shadow-bubble">
+        <PageTitle
+          eyebrow={`Teacher Mode ${isPreview ? "· Preview" : ""}`}
+          title={`Session ${session.number} · ${flow.title}`}
+          description={`Total time: ${flow.totalTime}. 단계별 실행 버튼과 백업 플랜을 확인합니다.`}
+        />
       </section>
 
       <section className="mt-8 grid gap-5 lg:grid-cols-2">
         {flow.steps.map((step) => (
-          <article key={step.id} className="hbe-card rounded-[32px] p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-black text-hbe-green">Step {step.order}</p>
-                <h2 className="mt-2 text-2xl font-black text-hbe-navy">{step.title}</h2>
-                <p className="mt-1 text-sm font-black text-hbe-navy/55">{step.time}</p>
-              </div>
-              <span className="rounded-full bg-hbe-cream px-4 py-2 text-sm font-black text-hbe-navy">
-                {isPreview ? "Preview" : "Now"}
-              </span>
-            </div>
-            <p className="mt-4 font-bold text-hbe-navy/75">{step.teacherPrompt}</p>
-            <p className="mt-3 rounded-[22px] bg-hbe-sky/70 p-4 text-sm font-bold text-hbe-navy/65">
-              Backup: {step.backup}
-            </p>
-            <Link
-              href={step.href}
-              className="hbe-focus mt-5 inline-flex rounded-full bg-hbe-green px-5 py-3 font-black text-white shadow-bubble"
-            >
-              {step.buttonLabel}
-            </Link>
-          </article>
+          <TeacherStepCard key={step.id} step={step} isPreview={isPreview} />
         ))}
       </section>
 
@@ -86,6 +66,6 @@ export default function TeacherSessionPage({
           Admin Check
         </Link>
       </section>
-    </PageShell>
+    </ModeShell>
   );
 }

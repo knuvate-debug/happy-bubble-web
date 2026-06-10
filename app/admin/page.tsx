@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PageShell } from "@/components/PageShell";
+import { AdminShell } from "@/components/ui/AdminShell";
 import { StatusBadge } from "@/components/StatusBadge";
 import { AdminDashboard } from "@/components/AdminDashboard";
 import { QrAdminPanel } from "@/components/QrAdminPanel";
@@ -18,7 +18,7 @@ function qrUrl(sessionId: string, part: "P1" | "P2" | "P3" | "P4") {
 
 export default function AdminPage() {
   return (
-    <PageShell>
+    <AdminShell>
       <section className="hbe-card rounded-[40px] p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-hbe-green">Admin Mode</p>
         <h1 className="mt-4 text-5xl font-black text-hbe-navy">Happy Bubble Admin</h1>
@@ -92,6 +92,6 @@ export default function AdminPage() {
       <QrAdminPanel />
 
       <AdminDashboard />
-    </PageShell>
+    </AdminShell>
   );
 }

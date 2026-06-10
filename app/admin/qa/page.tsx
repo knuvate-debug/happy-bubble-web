@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { LaunchQaPanel } from "@/components/LaunchQaPanel";
-import { PageShell } from "@/components/PageShell";
+import { AdminShell } from "@/components/ui/AdminShell";
 
 export default function AdminQaPage() {
   return (
-    <PageShell>
+    <AdminShell>
       <LaunchQaPanel />
 
       <div className="mt-8">
@@ -15,6 +15,6 @@ export default function AdminQaPage() {
           Back to Admin
         </Link>
       </div>
-    </PageShell>
+    </AdminShell>
   );
 }

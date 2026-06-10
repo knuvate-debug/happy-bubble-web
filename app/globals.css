@@ -54,3 +54,22 @@ a {
   outline: 4px solid rgba(245, 184, 0, 0.55);
   outline-offset: 3px;
 }
+
+
+.mode-child {
+  --mode-card-radius: 40px;
+}
+
+.mode-teacher {
+  --mode-card-radius: 32px;
+}
+
+.mode-admin {
+  --mode-card-radius: 28px;
+}
+
+@media (max-width: 640px) {
+  .mode-child .hbe-card {
+    border-radius: 32px;
+  }
+}
