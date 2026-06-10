@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageTitle } from "@/components/ui/PageTitle";
 import { TeacherStepCard } from "@/components/ui/TeacherStepCard";
+import { InstructorModeCards } from "@/components/classroom/InstructorModeCards";
 import { ModeShell } from "@/components/ui/ModeShell";
 import { teacherFlows } from "@/lib/teacherFlows";
 
@@ -17,13 +18,13 @@ export default function TeacherS01Page() {
         />
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/classroom/s01"
+            href="/classroom/s01?mode=korean"
             className="hbe-focus inline-flex rounded-full bg-hbe-green px-6 py-4 font-black text-white shadow-bubble transition hover:-translate-y-1"
           >
             Open Classroom Mode
           </Link>
           <Link
-            href="/classroom/s01/presenter"
+            href="/classroom/s01/presenter?mode=korean"
             className="hbe-focus inline-flex rounded-full bg-hbe-cream px-6 py-4 font-black text-hbe-navy shadow-bubble transition hover:-translate-y-1"
           >
             Presenter View

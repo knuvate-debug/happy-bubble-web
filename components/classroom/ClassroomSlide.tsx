@@ -1,15 +1,19 @@
 import type { ClassroomDeck, ClassroomSlide as ClassroomSlideType } from "@/lib/classroomSlides";
+import type { InstructorModeId } from "@/lib/instructorModes";
 import { ClassroomVisual } from "./ClassroomVisual";
+import { InstructorNotePanel } from "./InstructorNotePanel";
 import { SlideActionButton } from "./SlideActionButton";
 
 export function ClassroomSlide({
   deck,
   slide,
-  currentIndex
+  currentIndex,
+  instructorMode = "korean"
 }: {
   deck: ClassroomDeck;
   slide: ClassroomSlideType;
   currentIndex: number;
+  instructorMode?: InstructorModeId;
 }) {
   return (
     <section className="grid min-h-[calc(100vh-180px)] gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
@@ -28,13 +32,8 @@ export function ClassroomSlide({
             {slide.subtitle}
           </p>
 
-          <div className="mt-8 rounded-[28px] bg-hbe-cream p-5">
-            <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/50">
-              Teacher Note
-            </p>
-            <p className="mt-3 text-base font-bold leading-relaxed text-hbe-navy/74">
-              {slide.teacherNote}
-            </p>
+          <div className="mt-8">
+            <InstructorNotePanel slide={slide} mode={instructorMode} />
           </div>
         </div>
 

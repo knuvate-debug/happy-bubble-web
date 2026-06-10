@@ -19,6 +19,8 @@ type ReportSummary = {
     pauses: number;
     resets: number;
   };
+  instructorModes?: Record<string, number>;
+  topInstructorMode?: string | null;
   firstEventAt: string | null;
   lastEventAt: string | null;
   lastSlideId: string | null;
@@ -183,9 +185,9 @@ export function ClassroomReportPanel({ sessionId = "s01" }: { sessionId?: string
               <p className="mt-1 text-sm font-bold text-hbe-navy/60">starts</p>
             </div>
             <div className="rounded-[32px] bg-hbe-gold/80 p-5 shadow-bubble">
-              <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/55">Complete</p>
-              <p className="mt-3 text-4xl font-black text-hbe-navy">{summary.completeCount}</p>
-              <p className="mt-1 text-sm font-bold text-hbe-navy/60">records</p>
+              <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/55">Mode</p>
+              <p className="mt-3 text-3xl font-black text-hbe-navy">{summary.topInstructorMode ?? "—"}</p>
+              <p className="mt-1 text-sm font-bold text-hbe-navy/60">instructor</p>
             </div>
           </section>
 
@@ -219,6 +221,16 @@ export function ClassroomReportPanel({ sessionId = "s01" }: { sessionId?: string
                   <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/50">Timer Actions</p>
                   <p className="mt-2 text-sm font-bold text-hbe-navy/70">
                     Start {summary.timer.starts} · Pause {summary.timer.pauses} · Reset {summary.timer.resets}
+                  </p>
+                </div>
+                <div className="rounded-[24px] bg-hbe-bg p-4 sm:col-span-2">
+                  <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/50">Instructor Modes</p>
+                  <p className="mt-2 text-sm font-bold text-hbe-navy/70">
+                    {Object.entries(summary.instructorModes ?? {}).length
+                      ? Object.entries(summary.instructorModes ?? {})
+                          .map(([mode, count]) => `${mode} ${count}`)
+                          .join(" · ")
+                      : "—"}
                   </p>
                 </div>
               </div>

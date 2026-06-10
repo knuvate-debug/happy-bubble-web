@@ -3,11 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { ClassroomDeck as ClassroomDeckType } from "@/lib/classroomSlides";
+import type { InstructorModeId } from "@/lib/instructorModes";
 import { trackClassroomEvent } from "@/lib/classroomTracking";
 import { ClassroomControls } from "./ClassroomControls";
 import { ClassroomSlide } from "./ClassroomSlide";
+import { InstructorModeSelector } from "./InstructorModeSelector";
 
-export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
+export function ClassroomDeck({
+  deck,
+  instructorMode = "korean"
+}: {
+  deck: ClassroomDeckType;
+  instructorMode?: InstructorModeId;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const deckRef = useRef<HTMLDivElement | null>(null);
   const currentSlide = deck.slides[currentIndex];
@@ -22,7 +30,7 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
           eventName: "classroom_prev",
           slideId: nextSlide.id,
           value: nextSlide.title,
-          metadata: { source: "student_deck", index: next }
+          metadata: { source: "student_deck", index: next, instructorMode }
         });
       }
       return next;
@@ -39,7 +47,7 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
           eventName: "classroom_next",
           slideId: nextSlide.id,
           value: nextSlide.title,
-          metadata: { source: "student_deck", index: next }
+          metadata: { source: "student_deck", index: next, instructorMode }
         });
       }
       return next;
@@ -55,7 +63,8 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
       metadata: {
         source: "student_deck",
         slideCount: deck.slides.length,
-        currentIndex
+        currentIndex,
+        instructorMode
       }
     });
   }
@@ -112,7 +121,7 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            href="/classroom/s01/presenter"
+            href={`/classroom/s01/presenter?mode=${instructorMode}`}
             className="hbe-focus rounded-full bg-hbe-green px-4 py-2 text-sm font-black text-white shadow-sm"
             target="_blank"
           >
@@ -139,7 +148,16 @@ export function ClassroomDeck({ deck }: { deck: ClassroomDeckType }) {
         </div>
       </header>
 
-      <ClassroomSlide deck={deck} slide={currentSlide} currentIndex={currentIndex} />
+      <div className="mb-5">
+        <InstructorModeSelector currentMode={instructorMode} baseHref="/classroom/s01" compact />
+      </div>
+
+      <ClassroomSlide
+        deck={deck}
+        slide={currentSlide}
+        currentIndex={currentIndex}
+        instructorMode={instructorMode}
+      />
 
       <ClassroomControls
         currentIndex={currentIndex}

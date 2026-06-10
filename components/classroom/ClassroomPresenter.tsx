@@ -3,12 +3,21 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { ClassroomDeck as ClassroomDeckType } from "@/lib/classroomSlides";
+import type { InstructorModeId } from "@/lib/instructorModes";
 import { trackClassroomEvent } from "@/lib/classroomTracking";
 import { ClassroomTimer } from "./ClassroomTimer";
+import { InstructorModeSelector } from "./InstructorModeSelector";
+import { InstructorNotePanel } from "./InstructorNotePanel";
 import { PresenterSlideList } from "./PresenterSlideList";
 import { SlideActionButton } from "./SlideActionButton";
 
-export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
+export function ClassroomPresenter({
+  deck,
+  instructorMode = "korean"
+}: {
+  deck: ClassroomDeckType;
+  instructorMode?: InstructorModeId;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const slide = deck.slides[currentIndex];
 
@@ -22,7 +31,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
           eventName: "classroom_prev",
           slideId: nextSlide.id,
           value: nextSlide.title,
-          metadata: { source: "presenter", index: next }
+          metadata: { source: "presenter", index: next, instructorMode }
         });
       }
       return next;
@@ -39,7 +48,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
           eventName: "classroom_next",
           slideId: nextSlide.id,
           value: nextSlide.title,
-          metadata: { source: "presenter", index: next }
+          metadata: { source: "presenter", index: next, instructorMode }
         });
       }
       return next;
@@ -54,7 +63,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
       eventName: "classroom_slide_view",
       slideId: selected.id,
       value: selected.title,
-      metadata: { source: "presenter_select", index }
+      metadata: { source: "presenter_select", index, instructorMode }
     });
   }
 
@@ -67,7 +76,8 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
       metadata: {
         source: "presenter",
         slideCount: deck.slides.length,
-        currentIndex
+        currentIndex,
+        instructorMode
       }
     });
   }
@@ -78,7 +88,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
       eventName: "classroom_presenter_open",
       slideId: slide.id,
       value: deck.title,
-      metadata: { source: "presenter", slideCount: deck.slides.length }
+      metadata: { source: "presenter", slideCount: deck.slides.length, instructorMode }
     });
   }, [deck.sessionId, deck.slides.length, deck.title]);
 
@@ -88,7 +98,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
       eventName: "classroom_slide_view",
       slideId: slide.id,
       value: slide.title,
-      metadata: { source: "presenter", index: currentIndex }
+      metadata: { source: "presenter", index: currentIndex, instructorMode }
     });
   }, [currentIndex, deck.sessionId, slide.id, slide.title]);
 
@@ -118,7 +128,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            href="/classroom/s01"
+            href={`/classroom/s01?mode=${instructorMode}`}
             className="hbe-focus rounded-full bg-hbe-green px-5 py-3 text-sm font-black text-white shadow-sm"
             target="_blank"
           >
@@ -139,6 +149,10 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
         </div>
       </header>
 
+      <div className="mb-5">
+        <InstructorModeSelector currentMode={instructorMode} baseHref="/classroom/s01/presenter" />
+      </div>
+
       <section className="grid gap-5 xl:grid-cols-[320px_1fr_340px]">
         <PresenterSlideList deck={deck} currentIndex={currentIndex} onSelect={selectSlide} />
 
@@ -156,13 +170,8 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
             {slide.subtitle}
           </p>
 
-          <div className="mt-7 rounded-[32px] bg-hbe-cream p-6">
-            <p className="text-xs font-black uppercase tracking-wide text-hbe-navy/50">
-              Teacher Note
-            </p>
-            <p className="mt-3 text-lg font-bold leading-relaxed text-hbe-navy/76">
-              {slide.teacherNote}
-            </p>
+          <div className="mt-7">
+            <InstructorNotePanel slide={slide} mode={instructorMode} />
           </div>
 
           {slide.focusText ? (
@@ -207,7 +216,7 @@ export function ClassroomPresenter({ deck }: { deck: ClassroomDeckType }) {
         </section>
 
         <aside className="space-y-5">
-          <ClassroomTimer sessionId={deck.sessionId} source="presenter" />
+          <ClassroomTimer sessionId={deck.sessionId} source={`presenter:${instructorMode}`} />
 
           <section className="rounded-[32px] bg-white/80 p-5 shadow-bubble">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-hbe-green">

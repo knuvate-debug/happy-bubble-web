@@ -25,6 +25,16 @@ function summarizeClassroomEvents(events: LearningEvent[], sessionId: string) {
   const timerResets = events.filter((event) => event.event_name === "classroom_timer_reset").length;
   const completes = events.filter((event) => event.event_name === "classroom_complete").length;
 
+  const instructorModes = events.reduce<Record<string, number>>((acc, event) => {
+    const rawMode = event.metadata?.instructorMode;
+    if (typeof rawMode === "string") {
+      acc[rawMode] = (acc[rawMode] ?? 0) + 1;
+    }
+    return acc;
+  }, {});
+  const topInstructorMode =
+    Object.entries(instructorModes).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+
   const lastEvent = events[0] ?? null;
   const firstEvent = events[events.length - 1] ?? null;
 
@@ -44,6 +54,8 @@ function summarizeClassroomEvents(events: LearningEvent[], sessionId: string) {
       pauses: timerPauses,
       resets: timerResets
     },
+    instructorModes,
+    topInstructorMode,
     firstEventAt: firstEvent?.created_at ?? null,
     lastEventAt: lastEvent?.created_at ?? null,
     lastSlideId: slideViews[0]?.round_id ?? null,

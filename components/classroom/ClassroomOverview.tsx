@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import type { ClassroomDeck } from "@/lib/classroomSlides";
 import { trackClassroomEvent } from "@/lib/classroomTracking";
+import { InstructorModeCards } from "./InstructorModeCards";
 
 export function ClassroomOverview({ deck }: { deck: ClassroomDeck }) {
   useEffect(() => {
@@ -46,6 +47,10 @@ export function ClassroomOverview({ deck }: { deck: ClassroomDeck }) {
           </Link>
         </div>
       </header>
+
+      <section className="mb-6">
+        <InstructorModeCards />
+      </section>
 
       <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {deck.slides.map((slide, index) => (

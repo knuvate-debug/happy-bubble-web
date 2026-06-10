@@ -1,8 +1,14 @@
 import { ClassroomPresenter } from "@/components/classroom/ClassroomPresenter";
 import { getClassroomDeck } from "@/lib/classroomSlides";
+import { getInstructorMode } from "@/lib/instructorModes";
 
-export default function ClassroomS01PresenterPage() {
+export default function ClassroomS01PresenterPage({
+  searchParams
+}: {
+  searchParams?: { mode?: string };
+}) {
   const deck = getClassroomDeck("s01");
+  const instructorMode = getInstructorMode(searchParams?.mode).id;
 
   if (!deck) {
     return (
@@ -14,5 +20,5 @@ export default function ClassroomS01PresenterPage() {
     );
   }
 
-  return <ClassroomPresenter deck={deck} />;
+  return <ClassroomPresenter deck={deck} instructorMode={instructorMode} />;
 }
